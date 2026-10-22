@@ -1,0 +1,307 @@
+/* ==========================================================================
+   Design Tokens & Globale Instellingen (Alle pagina's)
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --success: #10b981;
+  --warning: #d97706;
+  --danger: #ef4444;
+  --border-color: #e2e8f0;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --transition-fast: 0.15s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-tertiary); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: var(--radius-sm); }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+
+/* ==========================================================================
+   Algemene Grid, Layouts & Kaarten (Alle pagina's)
+   ========================================================================== */
+
+/* Containers & Kolommen */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.flex-row { display: flex; align-items: center; gap: 16px; }
+.grid-cols-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+@media (max-width: 768px) { .grid-cols-2 { grid-template-columns: 1fr; } }
+
+/* Semi-transparante Glaskaarten (Gebruikt op Home, Login en Dashboards) */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==========================================================================
+   Algemene Formulier-elementen, Knoppen & Badges (Alle pagina's)
+   ========================================================================== */
+
+/* Knoppen (Algemeen) */
+.btn {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-secondary { background: #f1f5f9; color: var(--text-primary); border: 1px solid #cbd5e1; }
+.btn-secondary:hover { background: #e2e8f0; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-success { background: var(--success); color: #fff; }
+.btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+/* Invoervelden & Select-boxen */
+.form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 14px; font-weight: 500; color: var(--text-secondary); }
+.form-control {
+  font-family: var(--font-sans);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+.form-control:focus { border-color: var(--primary); background: #ffffff; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); }
+select.form-control option { color: var(--text-primary); background-color: #fff; }
+
+/* Status Badges (Reserveringen & Lessen) */
+.badge { display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: 700; border-radius: 9999px; text-transform: uppercase; }
+.badge-voorlopig { background: rgba(217, 119, 6, 0.15); color: var(--warning); border: 1px solid rgba(217, 119, 6, 0.3); }
+.badge-definitief { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-geannuleerd { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+
+/* ==========================================================================
+   Tabellen & Grid Overlays (Gebruikt in Instructeur & Eigenaar Dashboards)
+   ========================================================================== */
+
+/* Tabel Containers */
+.table-container { width: 100%; max-width: 100%; overflow-x: auto; border-radius: var(--radius-sm); }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); }
+th { background-color: #f1f5f9; color: var(--text-primary); font-weight: 600; font-size: 14px; }
+tr:hover td { background-color: #f8fafc; }
+
+/* Responsive Mobiel Tabeloverzicht (Maakt kolommen onder elkaar zichtbaar) */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr {
+    display: none; /* Verberg headers op mobiel */
+  }
+  tr {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    background: var(--bg-secondary);
+  }
+  td {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    padding-left: 45%;
+    text-align: right;
+  }
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    width: 40%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  td:last-child {
+    border-bottom: 0;
+  }
+  tr:hover td { background-color: transparent; }
+}
+
+
+/* ==========================================================================
+   Succes- & Foutmeldingsboxen (Overal gebruikt)
+   ========================================================================== */
+
+.alert { padding: 14px; border-radius: var(--radius-sm); margin-bottom: 20px; font-weight: 500; border: 1px solid transparent; }
+.alert-success { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+.alert-danger { background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
+
+
+/* ==========================================================================
+   Hoofd-Header, Logo & Menunavigatie (Alle pagina's)
+   ========================================================================== */
+
+/* Header Lay-out */
+.main-header {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.logo-accent {
+  color: var(--primary);
+}
+
+/* Navigatie Links */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding-bottom: 4px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.nav-link:hover {
+  color: var(--primary);
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.user-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.auth-links {
+  display: flex;
+  gap: 12px;
+}
+
+/* Hamburger Mobiele Menuknop */
+.mobile-toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 4px;
+}
+
+/* Responsive Mobiele Menunavigatie */
+@media (max-width: 1024px) {
+  .mobile-toggle-btn {
+    display: block;
+  }
+  .main-nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 24px;
+    gap: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  }
+  .main-nav.open {
+    display: flex;
+  }
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+    width: 100%;
+  }
+  .auth-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+  }
+  .auth-links .btn {
+    width: 100%;
+  }
+  .user-info .btn {
+    width: 100%;
+  }
+}
